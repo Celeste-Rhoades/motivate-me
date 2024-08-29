@@ -10,13 +10,13 @@ router.get("/", homeController.getIndex);
 router.get("/profile", ensureAuth, postsController.getProfile);
 
 //Routes for user login/signup
-router.get("/login", authController.getLogin);
-router.post("/login", authController.postLogin);
+router.get("/compliments", authController.getLogin);
+router.post("/compliments", authController.postLogin);
 router.get("/logout", authController.logout);
-router.get("/signup", authController.getSignup);
-router.post("/signup", authController.postSignup);
-
+router.get("/motivation", authController.getSignup);
+router.post("/motivation", authController.postSignup);
+//check out the auth (do I need?)
 router.get("*", (req, res) => {
-  return res.send(`route ${req.url} has not been implemented`); //wildcrad used in production but not for final product to help troubleshoot where issue is
+  return res.send(`route ${req.url} has not been implemented`); //wildcard used in production but not for final product to help troubleshoot where issue is
 });
 module.exports = router;
