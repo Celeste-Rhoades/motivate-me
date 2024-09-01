@@ -1,29 +1,51 @@
 <%- include('partials/header') -%>
 
-<main class="container">
-  <div class="row justify-content-center">
-    <section class="col-6 mt-5">
-      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-      <div class="alert alert-danger"><%= el.msg %></div>
-      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
-      messages.info.forEach( el => { %>
-      <div class="alert alert-info"><%= el.msg %></div>
-      <% }) %> <% } %>
-      <body>
-        <section class="card w-96 bg-base-100 shadow-xl">
-          <form
-            action="/login"
-            method="POST"
-            class="card-body items-center text-center"
-          >
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="submit" />
-          </form>
-        </section>
-      </body>
-    </section>
-  </div>
-</main>
+  <div class="w-full flex justify-center"></div>
 
-<%- include('partials/footer') -%>
+  <div class="w-full flex justify-center">
+    <div class="card w-96 bg-base-100 shadow-xl">
+      <div class="card-body items-center text-center">
+        <h3 id="errorArea"></h3>
+        <input
+          type="text"
+          placeholder=""
+          class="input input-bordered input-xs w-full max-w-xs"
+          id="complimentAuthorInput"
+        />
+        <input
+          type="text"
+          placeholder=""
+          class="input input-bordered input-xs w-full max-w-xs"
+          id="complimentTextInput"
+        />
+        <button class="btn btn-active btn-primary" id="newComplimentButton">
+         Add Compliment
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full flex justify-center">
+    <div class="card w-96 bg-base-100 shadow-xl">
+      <div class="card-body items-center text-center">
+        <h3>Compliment:</h3>
+        <ol>
+          <% if (compliment && Array.isArray(compliment.answers)) { %>
+            <% for (let i = 0; i < compliment.answers.length; i++) {%>
+              <li>
+                <span>
+                  <%= compliment.answers[i].author %>:
+                  <%= compliment.answers[i].answerText %>
+                </span>
+              </li>
+            <% } %>
+          <% } else { %>
+            <p>No Compliments are available.</p>
+          <% } %>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') -%>
+</body>
